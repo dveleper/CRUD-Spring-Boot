@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Datos de la Persona</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <h1>Prueba Practica VALID</h1>
+        <section th:fragment="Agregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <form th:action="@{/guardar}" method="post" th:object="${persona}">
+                    <input type="hidden" name="idPersona" th:field="*{idPersona}" />
+                    <input type="hidden" name="procesado" th:field="*{procesado}" />
+                    <div class="col-md-6">
+                        <div class="card-header">
+                            <div class="card-header">
+                                <h4>Registrar Persona</h4>
+                            </div>
+                            <br/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-6">
+                                <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                <input th:field="*{nombre}" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-6">
+                                <span class="input-group-text" id="basic-addon1">Apellido</span>
+                                <input th:field="*{apellido}" type="text" class="form-control" placeholder="Apellido" aria-label="Apellido" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group mb-6">
+                                <input class="btn btn-success" type="submit" name="guardar" value="guardar"/>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                    
+                    <br/><br/>
+                    <div class="row">
+                        <div class="col-md-20">
+                            <a th:href="@{/}" class="btn btn-primary btn-block">
+                                <i class="fas fa-plus"></i> Regresar
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Prueba Practica VALID</title>
+        <meta charset="UTF-8">
+            <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+            <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+            <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+            <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+            <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <h1>Prueba Practica VALID</h1>
+        <section th:fragment="botonAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a th:href="@{/agregar}" class="btn btn-primary btn-block">
+                            <i class="fas fa-plus"></i> Registro
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>      
+        <section th:fragment="listadoClientes" id="clientes">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Personas</h4>
+                            </div>
+                            <div th:if="${personas != null and !personas.empty}">
+
+
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombres Apellidos</th>
+                                            <th>Estado</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="persona, contador : ${personas}">
+                                            <td>[[${contador.count}]]</td>
+
+                                            <td>[[${persona.nombre} + ' ' + ${persona.apellido}]]</td>
+                                            <td th:text="${persona.procesado} ? 'Procesado' : 'Pendiente'"></td>
+                                            <td>
+                                                <a th:href="@{/procesar/} + ${persona.idPersona}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-angle-double-right"></i> Procesar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/editar/} + ${persona.idPersona}"
+                                                   class="btn btn-outline-info">
+                                                    <i class="fas fa-angle-double-right"></i> editar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/eliminar(idPersona=${persona.idPersona})}"
+                                                   class="btn btn-dark">
+                                                    <i class="fas fa-angle-double-right"></i> eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>  
+                            <div class="text-center p-2" th:if="${personas == null or personas.empty}">
+                                <span>No existen registros en estos momentos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
