@@ -45,7 +45,7 @@ public class ControladorInicio {
         return "modificar";
     }
     
-    @DeleteMapping("/eliminar")
+    @GetMapping("/eliminar")
     public String eliminar(Persona persona, Model model){
         personaService.eliminar(persona);
         model.addAttribute("persona", persona);
