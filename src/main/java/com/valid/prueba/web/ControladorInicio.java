@@ -6,9 +6,11 @@ import com.valid.prueba.domain.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.valid.prueba.servicio.IPersonaService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 @Slf4j
@@ -25,8 +27,8 @@ public class ControladorInicio {
         return "index";
     }
     
-    @GetMapping("/agregar")
-    public String agregar(Persona persona){
+    @GetMapping("/registro")
+    public String registrar(Persona persona){
         return "modificar";
     }
     
@@ -43,7 +45,7 @@ public class ControladorInicio {
         return "modificar";
     }
     
-    @GetMapping("/eliminar")
+    @DeleteMapping("/eliminar")
     public String eliminar(Persona persona, Model model){
         personaService.eliminar(persona);
         model.addAttribute("persona", persona);
